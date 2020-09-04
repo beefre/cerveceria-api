@@ -6,17 +6,8 @@ const db = require('../db/models');
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   var filter = req.body.filter || {}
-  try {
-    return db.User.findAll(filter).then((users) => res.json(users))
-    
-  } catch (error) {
-    console.log(error)
-    
-  }
-  
+  return db.User.findAll(filter).then((users) => res.json(users))
 })
-
-
 
 
 module.exports = router;
