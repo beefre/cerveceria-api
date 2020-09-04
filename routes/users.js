@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
   //return res.json({success:"exito"})
 
   try {
-    return db.User.findAll(filter).then((users) => res.json(users))
+    return db.User.findAll(filter).then((users) => res.json(users)).catch(err => alert(error))
   } catch (error) {
     console.log(error)
     
