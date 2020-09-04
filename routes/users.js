@@ -5,8 +5,9 @@ const db = require('../db/models');
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  var filter = req.body.filter || {}
-  return db.User.findAll(filter).then((users) => res.json(users))
+  /*var filter = req.body.filter || {}
+  return db.User.findAll(filter).then((users) => res.json(users))*/
+  return res.json({success:"exito"})
 })
 
 
