@@ -11,7 +11,7 @@ module.exports = {
     storage: ":memory:",
   },
   production: {
-    use_env_variable: "DATABASE",
+    use_env_variable: "DATABASE_URL",
     dialect: "postgres",
   },
 }
