@@ -15,9 +15,20 @@ const getAll = async () => {
     }
 }
 
-
-
+const getById = async (id) => {
+    try {
+      const product = await db.Product.findOne({
+        raw: true,
+        where: { id: id }
+      });
+      return product;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
 
 module.exports = {
-    getAll
+    getAll,
+    getById
 };
