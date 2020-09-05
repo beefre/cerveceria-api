@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../controllers/user-controller')
+const controller = require('../controllers/product-controller')
 
 
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  const users = await controller.getAll()
-  res.json({users})
+  const products = await controller.getAll()
+  res.json({products})
     
 })
 
