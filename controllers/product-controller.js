@@ -28,7 +28,18 @@ const getById = async (id) => {
     }
   }
 
+  const create = async (product) => {
+    try {
+      await db.Product.create(product);
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
 module.exports = {
     getAll,
-    getById
+    getById,
+    create
 };

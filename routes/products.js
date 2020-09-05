@@ -14,6 +14,15 @@ router.get('/:id', async (req, res, next) => {
     res.json({ product });
   });
 
+  router.post('/create', async (req, res) => {
+    const product = req.body;
+    const success = await controller.create(product);
+    if (success) {
+      res.send('Se ha creado correctamente');
+    } else {
+      res.send('Ha ocurrido un error al crear');
+    }
+  });
 
 
 module.exports = router;
