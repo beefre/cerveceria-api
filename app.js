@@ -10,10 +10,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products')
 
-//para aceptar peticiones
-app.use(cors)
 
 var app = express();
+
+//para aceptar peticiones
+app.use(cors)
 
 app.use(logger('dev'));
 app.use(express.json());
