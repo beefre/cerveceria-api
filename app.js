@@ -19,8 +19,5 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 console.log('app.js-El puerto es: ',process.env.PORT)
 
-// app.listen(process.env.PORT || 3000, () => {
-//     console.log('server on port 3000');
-//   });
 
 module.exports = app;
