@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     const id = Number(req.params.id);
     const product = await controller.getById(id);
-    res.json({ product });
+    res.json({ product }); 
   });
 
   router.post('/create', async (req, res) => {
