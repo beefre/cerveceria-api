@@ -38,8 +38,40 @@ const getById = async (id) => {
     }
   }
 
+
+
+// Actualiza la información de un destino
+const update = async (id,product) => {
+  try {
+    await db.Product.update(product, {
+      where: { id: id },
+    });
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+// Elimina un registro de destinos de la base de datos
+const destroy = async (id) => {
+  try {
+    await db.Product.destroy({
+      where: {
+        id: id
+      }
+    });
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+
 module.exports = {
     getAll,
     getById,
-    create
+    create,
+    update,
+    destroy
 };

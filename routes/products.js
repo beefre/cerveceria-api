@@ -24,5 +24,28 @@ router.get('/:id', async (req, res, next) => {
     }
   });
 
+// Actualiza la información de un destino
+router.post('/update/:id', async (req, res) => {
+  const id = Number(req.params.id);
+  const product = req.body;
+  const success = await controller.update(id, product);
+  if (success) {
+    res.send('Datos actualizados correctamente');
+  } else {
+    res.send('Hubo un error al actualizar el registro');
+  }
+});
+
+// Elimina un registro de destinos de la base de datos
+router.post('/delete/:id', async (req, res) => {
+  const id = Number(req.params.id);
+  const success = await controller.destroy(id);
+  if (success) {
+    res.send('El registro se ha eliminado correctamente');
+  } else {
+    res.send('No se ha podido eliminar el registro');
+  }
+})
+
 
 module.exports = router;
