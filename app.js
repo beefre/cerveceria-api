@@ -1,9 +1,10 @@
 var express = require('express');
+const cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require("dotenv").config()
-const cors = require('cors')
+
 
 
 var indexRouter = require('./routes/index');
@@ -14,6 +15,7 @@ var productsRouter = require('./routes/products')
 var app = express();
 
 //para aceptar peticiones
+app.use(cors)
 
 
 app.use(logger('dev'));
@@ -27,6 +29,6 @@ app.use('/users', usersRouter);
 app.use('/products',productsRouter)
 console.log('app.js-El puerto es: ',process.env.PORT)
 
-// app.use(cors)
+
 
 module.exports = app;
