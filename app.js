@@ -27,6 +27,6 @@ app.use('/users', usersRouter);
 app.use('/products',productsRouter)
 console.log('app.js-El puerto es: ',process.env.PORT)
 
-app.use(cors)
+// app.use(cors)
 
 module.exports = app;
