@@ -14,7 +14,7 @@ var productsRouter = require('./routes/products')
 var app = express();
 
 //para aceptar peticiones
-// app.use(cors)
+app.use(cors)
 
 app.use(logger('dev'));
 app.use(express.json());
