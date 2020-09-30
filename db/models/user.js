@@ -1,7 +1,10 @@
+
+const bcrypt = require('bcrypt-nodejs');
 'use strict';
 const {
   Model
 } = require('sequelize');
+const { options } = require('../../app');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -17,11 +20,23 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
-  }, {
+  },
+  {
+    hooks:{
+      beforeValidate: (user, options) =>{
+        user.password =  bcrypt.hashSync(user.password,bcrypt.genSaltSync(10))
+      }
+    },
     sequelize,
     modelName: 'User',
     tableName: 'Users',
     timestamps:false
-  });
+  }
+  );
+
+  
+
+  
+
   return User;
 };
