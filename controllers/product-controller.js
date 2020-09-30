@@ -1,5 +1,4 @@
 var express = require('express');
-var router = express.Router();
 const db = require('../db/models');
 
 
@@ -30,6 +29,7 @@ const getById = async (id) => {
 
   const create = async (product) => {
     try {
+      //express validator
       await db.Product.create(product);
       return true;
     } catch (err) {

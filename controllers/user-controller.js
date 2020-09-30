@@ -1,5 +1,4 @@
 var express = require('express');
-var router = express.Router();
 const db = require('../db/models');
 
 
@@ -15,9 +14,49 @@ const getAll = async () => {
     }
 }
 
+const create = async (user) => {
+    try {
+      //express validator
+      await db.User.create(user);
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  const update = async (id,user) => {
+    try {
+      await db.User.update(user, {
+        where: { id: id },
+      });
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+  
+  // Elimina un registro de destinos de la base de datos
+  const destroy = async (id) => {
+    try {
+      await db.User.destroy({
+        where: {
+          id: id
+        }
+      });
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
 
 
 
 module.exports = {
-    getAll
+    getAll,
+    create,
+    destroy,
+    update
 };
