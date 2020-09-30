@@ -11,6 +11,13 @@ router.get("/", async (req, res, next) => {
     
 })
 
+router.get('/:id', async (req, res, next) => {
+  const id = Number(req.params.id);
+  const user = await controller.getById(id);
+  res.json({ user }); 
+});
+
+
 router.post('/create', async (req, res) => {
   const user = req.body;
   const success = await controller.create(user);

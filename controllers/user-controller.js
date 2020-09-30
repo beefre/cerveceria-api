@@ -52,11 +52,25 @@ const create = async (user) => {
     }
   }
 
+  const getById = async (id) => {
+    try {
+      const user = await db.User.findOne({
+        raw: true,
+        where: { id: id }
+      });
+      return user;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
 
 
 module.exports = {
     getAll,
     create,
     destroy,
-    update
+    update,
+    getById
 };
