@@ -6,7 +6,6 @@ var JWTStrategy = passportJWT.Strategy;
 var ExtractJWT = passportJWT.ExtractJwt;
 const bcrypt = require('bcrypt-nodejs');
 
-const Users = require("../db/models/user");
 const models = require("../db/models");
 
 passport.use(
@@ -16,7 +15,7 @@ passport.use(
       passwordField: "password",
     },
     function (email, password, cb) {
-        // const pas = models.User.validPassword(password)
+         const pas = models.User.validPassword(password)
         // console.log('el pass es: ',pas)
       return models.User.findOne({
         where: { email, password },
