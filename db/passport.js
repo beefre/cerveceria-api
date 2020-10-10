@@ -14,19 +14,37 @@ passport.use(
       usernameField: "email",
       passwordField: "password",
     },
-    function (email, password, cb) {
-         const pas = models.User.validPassword(password)
-        // console.log('el pass es: ',pas)
-      return models.User.findOne({
-        where: { email, password },
-      })
-        .then(function (user) {
-          return cb(null, user);
+
+    async (email,password, done)=>{
+      try {
+        const user = await models.User.findOne({where: {email}})
+        if (!user.validPassword(password)){
+          return done(null,false, {
+            message:'Esa cuenta no existe'
+          })
+        }
+        return done(null, user)
+      } catch (error) {
+        return done(null,false, {
+          message:'Esa cuenta no existe'
         })
-        .catch((err) => {
-          return cb(err);
-        });
+        
+      }
     }
+    // function (email, password, cb) {
+    //      const usr = models.User.findOne({where: { email}})
+    //      if(usr.validPassword(password)){
+    //       console.log('ERROR, PASSWORD INCORRECTO')
+    //      }
+         
+    //   return usr
+    //     .then(function (user) {
+    //       return cb(null, user);
+    //     })
+    //     .catch((err) => {
+    //       return cb(err);
+    //     });
+    // }
 
 
   )
