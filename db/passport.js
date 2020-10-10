@@ -4,7 +4,6 @@ var passportJWT = require("passport-jwt");
 var LocalStrategy = require("passport-local").Strategy;
 var JWTStrategy = passportJWT.Strategy;
 var ExtractJWT = passportJWT.ExtractJwt;
-const bcrypt = require('bcrypt-nodejs');
 
 const models = require("../db/models");
 
@@ -20,7 +19,7 @@ passport.use(
         const user = await models.User.findOne({where: {email}})
         if (!user.validPassword(password)){
           return done(null,false, {
-            message:'Esa cuenta no existe'
+            message:'Password incorrecto'
           })
         }
         return done(null, user)
@@ -31,22 +30,6 @@ passport.use(
         
       }
     }
-    // function (email, password, cb) {
-    //      const usr = models.User.findOne({where: { email}})
-    //      if(usr.validPassword(password)){
-    //       console.log('ERROR, PASSWORD INCORRECTO')
-    //      }
-         
-    //   return usr
-    //     .then(function (user) {
-    //       return cb(null, user);
-    //     })
-    //     .catch((err) => {
-    //       return cb(err);
-    //     });
-    // }
-
-
   )
 );
 

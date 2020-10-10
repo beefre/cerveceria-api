@@ -22,10 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         beforeValidate: (user, options) => {
-          user.password = bcrypt.hashSync(
-            user.password,
-            bcrypt.genSaltSync(10)
-          );
+          user.password = bcrypt.hashSync(user.password,bcrypt.genSaltSync(10));
         }
       },
       sequelize,
