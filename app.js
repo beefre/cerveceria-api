@@ -7,11 +7,10 @@ const session = require('express-session')
 var logger = require('morgan');
 require("dotenv").config()
 
-
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products')
+var getProductsRouter = require('./routes/getProducts')
 var authRouter = require("./routes/auth")
 
 
@@ -39,8 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/auth", authRouter)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/products',productsRouter)
-console.log('app.js-El puerto es: ',process.env.PORT)
+app.use('/products',passport.authenticate("jwt", { session: false }),productsRouter)
+app.use('/getProducts',getProductsRouter);
 
 
 
