@@ -40,7 +40,7 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET,
     },
     function (jwtPayload, cb) {
-      return models.Users.findByPk(jwtPayload.id)
+      return models.User.findByPk(jwtPayload.id)
         .then((user) => {
           return cb(null, user);
         })
