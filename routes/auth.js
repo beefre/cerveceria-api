@@ -6,14 +6,14 @@ var router = express.Router()
 
 /* POST /login */
 router.post("/login", function (req, res) {
-    console.log('El body:',req.body)
+    //console.log('El body:',req.body)
 
    passport.authenticate("local", { session: false }, function (
     error,
     user,
     info
   ) {
-    console.log('error: ',error,' user: ',user,'info: ',info)
+    //console.log('error: ',error,' user: ',user,'info: ',info)
     if (error || !user) {
       return res.status(400).json({
         message: info ? info.message : "Login failed",
