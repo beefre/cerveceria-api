@@ -15,7 +15,6 @@ router.post("/login", function (req, res) {
   ) {
     console.log('error: ',error,' user: ',user,'info: ',info)
     if (error || !user) {
-        console.log('El error es: ',error)
       return res.status(400).json({
         message: info ? info.message : "Login failed",
         user: user,
