@@ -16,6 +16,17 @@ passport.use(
 
     async (email,password, done)=>{
       try {
+
+        if(!email ){
+          return done(null,false,{
+            message: 'Ingrese su email'
+          })
+        }
+        if(!password){
+          return done(null,false,{
+            message: 'Ingrese su password'
+          })
+        }
         const user = await models.User.findOne({where: {email}})
         if (!user.validPassword(password)){
           return done(null,false, {
