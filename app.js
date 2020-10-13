@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/auth", authRouter)
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', passport.authenticate("jwt", { session: false }),usersRouter);
 app.use('/products',passport.authenticate("jwt", { session: false }),productsRouter)
 app.use('/getProducts',getProductsRouter);
 
