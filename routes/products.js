@@ -42,6 +42,17 @@ router.get('/:id', async (req, res, next) => {
 router.post('/update/:id', async (req, res) => {
   const id = Number(req.params.id);
   const product = req.body;
+
+  if(req.files) {
+    let image = req.files.image;
+    const fileName = image.name;
+    const generatedFileName = `${uuid.v4()}${path.extname(fileName)}`;
+    const filePathAndName = `./public/images/${generatedFileName}`;
+    await image.mv(filePathAndName);
+    const imageUrl = await uploadFileToS3(filePathAndName, generatedFileName);
+    product.image = imageUrl;
+  }
+
   const success = await controller.update(id, product);
   if (success) {
     res.send('Datos actualizados correctamente');
