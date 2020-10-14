@@ -23,7 +23,12 @@ app.use(fileUpload({
 }));
 
 //para aceptar peticiones
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // <-- location of the react app were connecting to
+    credentials: true,
+  })
+);
 
 
 app.use(logger('dev'));
