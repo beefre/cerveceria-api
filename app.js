@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 const passport = require('./db/passport')
 const session = require('express-session')
 var logger = require('morgan');
+const fileUpload = require('express-fileupload');
 require("dotenv").config()
 
 var indexRouter = require('./routes/index');
@@ -16,13 +17,13 @@ var authRouter = require("./routes/auth")
 
 var app = express();
 
+// enable files upload
+app.use(fileUpload({
+  createParentPath: true
+}));
+
 //para aceptar peticiones
-app.use(
-    cors({
-      origin: "http://localhost:3000", // <-- location of the react app were connecting to
-      credentials: true,
-    })
-  );
+app.use(cors());
 
 
 app.use(logger('dev'));

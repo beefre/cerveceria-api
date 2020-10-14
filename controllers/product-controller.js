@@ -2,6 +2,7 @@ var express = require('express');
 const db = require('../db/models');
 
 
+
 const getAll = async () => {
     try {
         const products = await db.Product.findAll({raw:true})
